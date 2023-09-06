@@ -22,7 +22,6 @@ function auth(req, res, next) {
 
 		try {
 			const user = await userModel.findById(decode.id)
-
 			if (user.token !== token) {
 				return res.status(401).send({ message: "You are not authorized!" })
 			}
