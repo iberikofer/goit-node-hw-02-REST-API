@@ -1,15 +1,15 @@
-const jwt = require('jsonwebtoken')
-const userModel = require('../models/usersModel')
+const jwt = require("jsonwebtoken")
+const userModel = require("../models/usersModel")
 
 function auth(req, res, next) {
 	const authHeader = req.headers.authorization
-	if (typeof authHeader !== 'string') {
-		return res.status(401).send({ message: 'No token provided!' })
+	if (typeof authHeader !== "string") {
+		return res.status(401).send({ message: "No token provided!" })
 	}
 
 	const [bearer, token] = authHeader.split(" ", 2)
 	if (bearer !== "Bearer") {
-		return res.status(401).send({ message: 'No token provided!' })
+		return res.status(401).send({ message: "No token provided!" })
 	}
 
 	jwt.verify(token, process.env.JWT_SECREET, async (error, decode) => {

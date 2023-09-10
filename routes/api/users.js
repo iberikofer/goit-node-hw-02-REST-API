@@ -1,4 +1,4 @@
-const express = require('express')
+const express = require("express")
 const router = express.Router()
 const jsonParcer = express.json();
 const {
@@ -7,19 +7,25 @@ const {
 	logOutUser,
 	getCurrentUser,
 	changeAvatar,
-} = require('../../controllers/usersController.js')
+	verifyNewUser,
+	resendVerificationToken
+} = require("../../controllers/usersController.js")
 const auth = require("../../middleware/auth.js")
 const avatar = require("../../middleware/avatar.js")
 
-router.get('/current', auth, jsonParcer, getCurrentUser)
+router.get("/current", auth, jsonParcer, getCurrentUser)
 
-router.post('/register', jsonParcer, registerUser)
+router.post("/register", jsonParcer, registerUser)
 
-router.post('/login', jsonParcer, logInUser)
+router.get("/verify/:verifyToken", verifyNewUser)
 
-router.post('/logout', auth, jsonParcer, logOutUser)
+router.post("/verify", jsonParcer, resendVerificationToken)
 
-router.patch('/:id/avatar', auth, avatar.single('avatar'), changeAvatar)
+router.post("/login", jsonParcer, logInUser)
+
+router.post("/logout", auth, jsonParcer, logOutUser)
+
+router.patch("/:id/avatar", auth, avatar.single("avatar"), changeAvatar)
 
 
 module.exports = router

@@ -92,7 +92,7 @@ async function updateContact(req, res, next) {
 }
 
 async function updateFavoriteField(req, res, next) {
-	if (!Object.keys(req.body).includes('favorite')) {
+	if (!Object.keys(req.body).includes("favorite")) {
 		return res.status(400).send({ message: "Missing field - favorite!" });
 	}
 	const contact = await contactModel.findById(req.params.id).exec()

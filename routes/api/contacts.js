@@ -1,4 +1,4 @@
-const express = require('express')
+const express = require("express")
 const path = require("path");
 const router = express.Router()
 const jsonParcer = express.json();
@@ -12,17 +12,17 @@ const {
 	updateFavoriteField
 } = require(contactsPath)
 
-router.get('/', getContacts)
+router.get("/", getContacts)
 
-router.get('/:id', getContactById)
+router.get("/:id", getContactById)
 
-router.post('/', jsonParcer, addContact)
+router.post("/", jsonParcer, addContact)
 
-router.delete('/:id', removeContact)
+router.delete("/:id", removeContact)
 
 router.put("/:id", jsonParcer, updateContact)
 
-router.patch('/:id/favorite', jsonParcer, updateFavoriteField)
+router.patch("/:id/favorite", jsonParcer, updateFavoriteField)
 
 
 module.exports = router
